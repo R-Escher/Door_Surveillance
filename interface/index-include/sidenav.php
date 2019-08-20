@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="pt-BR">
-  <?php include_once 'head.php'; ?>
+  <?php include_once 'head.html'; ?>
   <body>
 
         <div class="d-flex toggled" id="wrapper" display="inline-block">
 
-            <!-- Sidebar --> 
+            <!-- Sidebar--> 
             <div class="bg-dark" id="sidebar-wrapper">
                 <div class="sidebar-heading" style="background-color: #1a1d20; color: #eaebeb; padding: 0px 16px"></div>
                 <div class="list-group list-group-flush" >
