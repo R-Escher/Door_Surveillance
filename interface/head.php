@@ -14,4 +14,3 @@
       <!-- load login box fonts -->
       <link href="css/login.css" rel="stylesheet">
   </head>
-</html>
