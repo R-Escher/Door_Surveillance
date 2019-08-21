@@ -1,5 +1,5 @@
 <?php
-include 'index-include/sidenav.php';
+include 'includes/sidenav.php';
 ?>
 <!-- Tags em aberto: <html>, <body>, <div class="d-flex" id="wrapper">, <div id="page-content-wrapper"> -->
 
@@ -27,4 +27,4 @@ include 'index-include/sidenav.php';
 </div> <!-- / id="page-content-wrapper" | todo o conteúdo deve ficar aqui dentro -->
 </div> <!-- / class="d-flex" id="wrapper" -->
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'includes/footer.php'; ?>
