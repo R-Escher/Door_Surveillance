@@ -36,5 +36,3 @@
 </div> <!-- / class="d-flex" id="wrapper" -->
 
 <?php include_once 'footer.php'; ?>
-
-</html>

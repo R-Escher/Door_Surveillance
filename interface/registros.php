@@ -26,4 +26,5 @@ include 'index-include/sidenav.php';
 </div>
 </div> <!-- / id="page-content-wrapper" | todo o conteúdo deve ficar aqui dentro -->
 </div> <!-- / class="d-flex" id="wrapper" -->
+
 <?php include_once 'footer.php'; ?>
