@@ -4,14 +4,17 @@
     # FUNÇÕES DO BANCO DE DADOS
     ###
 
-    include_once 'database/database.php'; // inclui objeto classe DB e objeto sql database
+    // inclui classe DB contendo os métodos para interação com o BANCO DE DADOS
+    // OBRIGATÓRIO O USO DESSE INCLUDE PARA UTILIZAR OS MÉTODOS MOSTRADOS ABAIXO
+    include_once 'database/database.php'; 
+    //
 
     #                  #
     # CADASTRA USUARIO #
     #                  #
-    $err = $DB->cadastra('12345','rafael');
+    $resp = $DB->cadastra('12345','rafael');
     # FUNCAO cadastra RETORNA TRUE, SE USUARIO FOI CADASTRADO, OU FALSE SE JÁ EXISTE
-    if ($err == true){
+    if ($resp == true){
         # TRATAMENTO CASO USUARIO EXISTA. ex: echo 'usuario cadastrado';
     } else{
         # TRATAMENTO CASO USUARIO NAO EXISTA. ex: echo 'usuario já existe';
@@ -22,11 +25,11 @@
     #                            #
     # VERIFICA SE USUARIO EXISTE #
     #                            #
-    $teste = $DB->verifica('123456');
+    $resp = $DB->verifica('123456');
     #
     # FUNCAO RETORNA NOME (STRING) CASO EXISTA
     #
-    if ($teste == null){
+    if ($resp == null){
         # TRATAMENTO CASO USUÁRIO NAO EXISTA
     } else {
         # TRATAMENTO CASO USUARIO EXISTA
@@ -38,11 +41,12 @@
     # REGISTRA USUARIO EXISTENTE #
     #    NA TABELA REGISTROS     #
     #                            #
-    $teste = $DB->registra('123456');
-    if ($teste == true){
+    $resp = $DB->registra('123456');
+    if ($resp == true){
         # REGISTRO EFETUADO CORRETAMENTE
     } else {
         # USUARIO NAO EXISTE
     }
+    #
 
 ?>
