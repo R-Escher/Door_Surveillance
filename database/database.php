@@ -20,9 +20,12 @@
         }
 
         public function verifica($tagId){
-            #
-            # VERIFICA SE TAG ESTÁ NO DATABASE e RETORNA NOME
-            #
+            /*
+            * VERIFICA SE TAG ESTÁ NO DATABASE.
+            * RETORNA NOME SE ESTIVER,
+            * RETORNA NULL CASO CONTRÁRIO.
+            */
+
             $query = self::$database->prepare("SELECT nome FROM cadastros WHERE tagId = ?");
             $query->bindParam(1, $tagId);
             $query->execute();
@@ -32,15 +35,15 @@
                 return null;
             } else {
                 return $row->nome;
-            }
-            # SE NAO ESTIVER, RETORNA NULL
-            #            
+            }           
         }
 
         public function cadastra($tagId, $nome){
-            #
-            # CADASTRA USUARIO NO DATABASE
-            #
+            /*
+            * CADASTRA USUARIO NO DATABASE.
+            * RETORNA TRUE SE CADASTRAR,
+            * RETORNA FALSE CASO CONTRARIO.
+            */
             if ($this->verifica($tagId) == null){
                 $query = self::$database->prepare("INSERT INTO cadastros (tagId, nome) VALUES (:tagId, :nome)");
                 $query->execute(array(":tagId" => $tagId, ":nome" => $nome));
@@ -53,6 +56,11 @@
         }
 
         public function registra($tagId){ //id, tagId, nome, data, estado
+            /*
+            * REGISTRA USUARIO EM TABELA DE REGISTROS (LOG).
+            * RETORNA FALSE SE USUARIO NÃO EXISTE,
+            * RETORNA TRUE CASO REGISTRO DE CERTO.
+            */
             $nome = $this->verifica($tagId);
             if ($nome == null){
                 return false;
@@ -65,13 +73,14 @@
             $query->execute();
             $rows = $query->fetchAll(PDO::FETCH_OBJ);
             
+            # VERIFICAÇÃO NECESSARIA PARA QUANDO NAO HA REGISTROS NA TABELA - IGNORAR.
             $estado = end($rows);
             if (gettype($estado)!='boolean'){
                 $estado = $estado->estado;
-            }
+            }            
             
             if ($estado == 0){ // se não está
-                $estado = 1;                            // então vai entrar.
+                $estado = 1;   // então vai entrar.
             }else{
                 $estado = 0;
                 
@@ -82,8 +91,5 @@
 
             return true;
         }
-
-
-
     }
 ?>
