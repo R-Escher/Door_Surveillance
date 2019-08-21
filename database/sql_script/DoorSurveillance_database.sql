@@ -4,7 +4,6 @@ CREATE DATABASE acesso_db1
 
 use acesso_db1;
 
-DROP TABLE cadastros;
 CREATE TABLE cadastros (
 	id INT(6) UNSIGNED AUTO_INCREMENT,
     tagId VARCHAR(30) NOT NULL UNIQUE,
@@ -12,7 +11,6 @@ CREATE TABLE cadastros (
     PRIMARY KEY (id, tagId)
 );
 
-DROP TABLE registros;
 CREATE TABLE registros (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     tagId VARCHAR(30) NOT NULL,
