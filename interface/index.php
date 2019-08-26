@@ -11,16 +11,16 @@
       <div class="card card-signin my-5">
         <div class="card-body">
           <h5 class="card-title text-center">Cadastro</h5>
-          <form class="form-signin" action="config/sessao.php" method="post">
+          <form class="form-signin" action="../config/cadastra.php" method="post">
             <div class="form-label-group">
 
-              <label for="inputCpf">TagID</label>
-              <input name="usuario" type="" id="inputCpf" class="form-control" placeholder=<?php echo $tagId;?> disabled autofocus>
+              <label for="inputTagID">TagID</label>
+              <input name="TagID" type="" id="inputTagID" class="form-control" placeholder=<?php echo $tagId;?> disabled autofocus>
             </div>
 
             <div class="form-label-group">
-              <label for="inputPassword">Digite o seu nome</label>
-              <input name="senha" type="nome" id="inputPassword" class="form-control" placeholder="Nome" required>
+              <label for="inputName">Digite o seu nome</label>
+              <input name="usuario" type="name" id="inputName" class="form-control" placeholder="Nome" required>
             </div>
             <input type="hidden" name="sessao" value="cadastro">
 
