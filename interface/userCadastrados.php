@@ -40,7 +40,7 @@ include 'includes/sidenav.php';
 
                     include_once '../database/database.php';
 
-                    $stmt = $database->prepare("SELECT nome,tagId FROM cadastros");
+                    $stmt = $database->prepare("SELECT id, tagId, nome, data FROM cadastros");
                     $stmt->execute();
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 

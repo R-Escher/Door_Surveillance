@@ -8,6 +8,7 @@ CREATE TABLE cadastros (
 	id INT(6) UNSIGNED AUTO_INCREMENT,
     tagId VARCHAR(30) NOT NULL UNIQUE,
     nome VARCHAR(30) NOT NULL,
+    data TIMESTAMP,
     PRIMARY KEY (id, tagId)
 );
 
