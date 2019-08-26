@@ -7,7 +7,7 @@
     */
 
     session_start();
-    include_once 'database.php';
+    include_once '../database/database.php';
 
     if(isset($_POST['usuario'])){
         $tagID =  $_POST['TagID'];
@@ -21,6 +21,6 @@
             echo 'deu ruim';
         }
     } else {
-        echo "erro em sessao.php - 'usuario' não passado em POST."
+        echo "erro em sessao.php - 'usuario' não passado em POST.";
     }
 ?>

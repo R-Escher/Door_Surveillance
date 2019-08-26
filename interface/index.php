@@ -1,7 +1,7 @@
 <?php
   error_reporting(E_ERROR | E_PARSE);
   include 'includes/sidenav.php';
-  $tagId = "79379111"
+  $tagId = "79379112";
 ?>
 
 <div class="container">
@@ -15,7 +15,8 @@
             <div class="form-label-group">
 
               <label for="inputTagID">TagID</label>
-              <input name="TagID" type="" id="inputTagID" class="form-control" placeholder=<?php echo $tagId;?> disabled autofocus>
+              <input name="TagID" type="hidden" id="inputTagID" class="form-control" value=<?php echo $tagId;?>>
+              <input name="show_TagID" type="" id="show_inputTagID" class="form-control" value=<?php echo $tagId;?> disabled autofocus>
             </div>
 
             <div class="form-label-group">
