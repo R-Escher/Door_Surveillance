@@ -1,6 +1,6 @@
 <?php
     include 'includes/sidenav.php';
-    include_once '../config/universal.php';
+    include_once $raiz.'/config/universal.php';
 ?>
 <!-- Tags em aberto: <html>, <body>, <div class="d-flex" id="wrapper">, <div id="page-content-wrapper"> -->
 

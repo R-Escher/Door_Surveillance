@@ -1,6 +1,7 @@
 <?php
+    $raiz = $_SERVER['DOCUMENT_ROOT'].'/Door_Surveillance';
 
-    include_once '../database/database.php';
+    include_once $raiz.'/database/database.php';
     include_once 'tableRows.php';
 
     $universal = new universal;

@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="pt-BR">
-  <?php include_once 'head.html'; ?>
+  <?php 
+    include_once 'head.html'; 
+    $raiz = $_SERVER['DOCUMENT_ROOT'].'/Door_Surveillance';
+  ?>
   <body>
 
         <div class="d-flex toggled" id="wrapper" display="inline-block">
