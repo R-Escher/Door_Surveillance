@@ -16,11 +16,14 @@
         $err = $DB->cadastra($tagID, $nome);
 
         if ($err == true){
-            echo 'Usuário cadastrado';
+            echo '<script>alert("Usuário cadastrado")</script>';
+            echo '<script>window.location = "interface/index.php"</script>';
         } else {
-            echo 'deu ruim';
+            echo '<script>alert("Erro - Usuário já cadastrado!")</script>';
+            echo '<script>window.location = "interface/index.php"</script>';
         }
     } else {
-        echo "erro em sessao.php - 'usuario' não passado em POST.";
+        echo '<script>alert("Erro em sessao.php - usuario não passado em POST.")</script>';
+        echo '<script>window.location = "interface/index.php"</script>';
     }
 ?>
