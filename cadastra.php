@@ -7,7 +7,7 @@
     */
 
     session_start();
-    include_once '../database/database.php';
+    include_once 'database/database.php';
 
     if(isset($_POST['usuario'])){
         $tagID =  $_POST['TagID'];
