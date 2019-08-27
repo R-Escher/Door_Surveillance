@@ -17,7 +17,7 @@
                 <th scope="col">Data</th>
                 </tr>                
             </thead>
-            <tbody id="mostraRegistos">
+            <tbody id="mostraRegistros">
                 <!-- aqui mostra os dados de cada cadastro -->
 
                 <?php
@@ -32,4 +32,5 @@
 </div> <!-- / id="page-content-wrapper" | todo o conteúdo deve ficar aqui dentro -->
 </div> <!-- / class="d-flex" id="wrapper" -->
 
+<script src="js/registros_ajaxCall.js"></script>
 <?php include_once 'includes/footer.php'; ?>
