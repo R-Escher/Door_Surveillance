@@ -23,7 +23,7 @@
             echo '<script>window.location = "interface/index.php"</script>';
         }
     } else {
-        echo '<script>alert("Erro em sessao.php - usuario não passado em POST.")</script>';
+        echo '<script>alert("Erro em cadastra.php - usuario não passado em POST.")</script>';
         echo '<script>window.location = "interface/index.php"</script>';
     }
 ?>
