@@ -11,7 +11,7 @@
       <div class="card card-signin my-5">
         <div class="card-body">
           <h5 class="card-title text-center">Cadastro</h5>
-          <form class="form-signin" action="../config/cadastra.php" method="post">
+          <form class="form-signin" action="../cadastra.php" method="post">
             <div class="form-label-group">
 
               <label for="inputTagID">TagID</label>

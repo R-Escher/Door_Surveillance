@@ -7,8 +7,13 @@
 
     class universal{
 
-        public function __construct(){
+        // variaveis estaticas devem ser acessadas com self::$variavel !
+        public static $DB;
+        public static $database;
 
+        public function __construct(){
+            self::$DB = new DB;
+            self::$database = DB::_conectaDB();
         }
 
         public function mostraUsuariosCadastrados(){
@@ -17,7 +22,7 @@
              * EM TAGS <TR><TD>...<TD></TR>
             */
 
-            $stmt = $database->prepare("SELECT id, tagId, nome, data FROM cadastros");
+            $stmt = self::$database->prepare("SELECT id, tagId, nome, data FROM cadastros");
             $stmt->execute();
             $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -32,7 +37,7 @@
              * EM TAGS <TR><TD>...<TD></TR>
             */
             
-            $stmt = $database->prepare("SELECT nome,tagId,estado,data FROM registros");
+            $stmt = self::$database->prepare("SELECT nome,tagId,estado,data FROM registros");
             $stmt->execute();
             $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
