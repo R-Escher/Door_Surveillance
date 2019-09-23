@@ -46,6 +46,28 @@
                 echo $v;
             }
         }
+
+        public function mostraMestre(){
+/*             $stmt = self::$database->prepare("SELECT tagId FROM registros WHERE nome = 'master'");
+            $stmt->execute();
+            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $id = $result->tagId; */
+            $query = self::$database->prepare("SELECT tagId FROM cadastros WHERE nome = 'mestre'");
+            $query->execute();
+
+            $row = $query->fetch(PDO::FETCH_OBJ);
+            if ($row==null){
+                return 0;
+            } else {
+                echo $row->tagId;
+            }           
+            
+
+        }
+        public function deletaMestre(){
+            $query = self::$database->prepare("DELETE FROM cadastros WHERE nome = 'mestre'");
+            $query->execute();
+        }
     }
 
 ?>

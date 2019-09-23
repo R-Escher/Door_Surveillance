@@ -37,6 +37,24 @@
                 return $row->nome;
             }           
         }
+        public function verificaMestre($tagId){
+            /*
+            * VERIFICA SE TAG ESTÁ NO DATABASE.
+            * RETORNA NOME SE ESTIVER,
+            * RETORNA NULL CASO CONTRÁRIO.
+            */
+
+            $query = self::$database->prepare("SELECT id FROM cadastros WHERE tagId = ? AND nome = 'mestre'");
+            $query->bindParam(1, $tagId);
+            $query->execute();
+
+            $row = $query->fetch(PDO::FETCH_OBJ);
+            if ($row==null){
+                return null;
+            } else {
+                return $row;
+            }           
+        }
 
         public function cadastra($tagId, $nome){
             /*
@@ -44,15 +62,15 @@
             * RETORNA TRUE SE CADASTRAR,
             * RETORNA FALSE CASO CONTRARIO.
             */
-            if ($this->verifica($tagId) == null){
-                $query = self::$database->prepare("INSERT INTO cadastros (tagId, nome) VALUES (:tagId, :nome)");
-                $query->execute(array(":tagId" => $tagId, ":nome" => $nome));
+            if ($this->verificaMestre($tagId) == null){
+                return false;
+            }else{
+                $query = self::$database->prepare("UPDATE cadastros SET nome = ? WHERE tagId = ?");
+                $query->bindParam(1, $nome);
+                $query->bindParam(2,$tagId);
+                $query->execute();
                 return true; // CADASTRADO
             }
-            else{
-                return false; // USUARIO JA EXISTE
-            }
-            
         }
 
         public function registra($tagId){ //id, tagId, nome, data, estado
@@ -63,33 +81,34 @@
             */
             $nome = $this->verifica($tagId);
             if ($nome == null){
+                $query = self::$database->prepare("INSERT INTO cadastros (tagId, nome) VALUES (:tagId, :nome)");
+                $query->execute(array(":tagId" => $tagId, ":nome" => 'mestre'));
                 return false;
-            }
-            date_default_timezone_set('America/Sao_Paulo');
-            $data = date("Y-m-d H:i:s");
-            
-            $query = self::$database->prepare("SELECT estado FROM registros WHERE tagId = ?");
-            $query->bindParam(1, $tagId);
-            $query->execute();
-            $rows = $query->fetchAll(PDO::FETCH_OBJ);
-            
-            # VERIFICAÇÃO NECESSARIA PARA QUANDO NAO HA REGISTROS NA TABELA - IGNORAR.
-            $estado = end($rows);
-            if (gettype($estado)!='boolean'){
-                $estado = $estado->estado;
-            }            
-            
-            if ($estado == 0){ // se não está
-                $estado = 1;   // então vai entrar.
-            }else{
-                $estado = 0;
                 
+            }else{
+                date_default_timezone_set('America/Sao_Paulo');
+                $data = date("Y-m-d H:i:s");
+                
+                $query2 = self::$database->prepare("SELECT estado FROM registros WHERE tagId = ?");
+                $query2->bindParam(1, $tagId);
+                $query2->execute();
+                $rows = $query2->fetchAll(PDO::FETCH_OBJ);
+                
+                # VERIFICAÇÃO NECESSARIA PARA QUANDO NAO HA REGISTROS NA TABELA - IGNORAR.
+                $estado = end($rows);
+                if (gettype($estado)!='boolean'){
+                    $estado = $estado->estado;
+                }            
+                
+                if ($estado == 0){ // se não está
+                    $estado = 1;   // então vai entrar.
+                }else{
+                    $estado = 0;
+                }
+                $query3 = self::$database->prepare("INSERT INTO registros (tagId, nome, data, estado) VALUES (:tagId, :nome, :data, :estado)");
+                $query3->execute(array(":tagId" => $tagId, ":nome" => $nome, ":data" => $data, ":estado" => $estado));
+                return true;
             }
-
-            $query = self::$database->prepare("INSERT INTO registros (tagId, nome, data, estado) VALUES (:tagId, :nome, :data, :estado)");
-            $query->execute(array(":tagId" => $tagId, ":nome" => $nome, ":data" => $data, ":estado" => $estado));
-
-            return true;
         }
     }
 ?>

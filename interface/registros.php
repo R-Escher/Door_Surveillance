@@ -31,6 +31,7 @@
 </div>
 </div> <!-- / id="page-content-wrapper" | todo o conteúdo deve ficar aqui dentro -->
 </div> <!-- / class="d-flex" id="wrapper" -->
-
+<script src="js/deletaMestre_ajaxCall.js"></script>
+<script src="js/mestre_ajaxCall.js"></script>
 <script src="js/registros_ajaxCall.js"></script>
 <?php include_once 'includes/footer.php'; ?>

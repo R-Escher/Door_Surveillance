@@ -1,7 +1,7 @@
 <?php
 
     /*
-     * ESTE ARQUIVO DEVE RECEBER O ID DO CARTAO VIA POST
+     * ESTE ARQUIVO DEVE RECEBER O ID DO CARTAO VIA GET
      * ENVIADO PELO ESP8266 E RECEBIDO PELO IP.
      * 
      * ESTE ARQUIVO FUNCIONA PARA UM RECEBIMENTO VIA SESSION.
@@ -10,17 +10,17 @@
     session_start();
     include_once 'database/database.php';
 
-    if(isset($_POST['TagID'])){
-        $TagID =  $_POST['TagID'];
+    if(isset($_POST['tagID'])){
+        $TagID =  $_POST['tagID'];
 
         $err =$DB->registra($TagID);
         if ($err == false){
-            echo "cartão invalido";
+            echo "0";
         } else {
-            //echo "$TagID passou"; 
+            echo "1"; 
         }
     } else {
-        echo "erro em passa_cartao.php - TagID não passado via POST.";
+        echo "erro em passa_cartao.php - TagID não passado via GET.";
     }
 
 ?>
