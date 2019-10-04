@@ -1,22 +1,22 @@
 
 // diferencia janelas de login entre os usuarios
-$("#cadastro-login").show(); $("#registros-login").hide(); $("#userCadastrados-login").hide();
+$("#cadastro-login").show(); $("#registros-login").hide(); $("#cadastros-login").hide();
 $("#cadastro-toggle").click(function(f) {
     $("#cadastro-login").show();
     $("#registros-login").hide();
-    $("#userCadastrados-login").hide();
+    $("#cadastros-login").hide();
     $("#wrapper").toggleClass("toggled");
     
 });
 $("#registros-toggle").click(function(f) {
     $("#cadastro-login").hide();
     $("#registros-login").show();
-    $("#userCadastrados-login").hide();
+    $("#cadastros-login").hide();
     $("#wrapper").toggleClass("toggled");
 });
-$("#userCadastrados-toggle").click(function(f) {
+$("#cadastros-toggle").click(function(f) {
     $("#cadastro-login").hide();
     $("#registros-login").hide();
-    $("#userCadastrados-login").show();
+    $("#cadastros-login").show();
     $("#wrapper").toggleClass("toggled");
 });

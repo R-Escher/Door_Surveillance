@@ -7,4 +7,4 @@ setInterval(function(f){
         async: true,
         data: request,
     });    
-}, 60000);
+}, 30000);

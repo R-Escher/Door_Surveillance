@@ -14,7 +14,7 @@
                 <div class="list-group list-group-flush" >
                 <a href="index.php" class="list-group-item list-group-item-action bg-dark" id="cadastro-toggle" style="color: #c2c3c5">Cadastro</a>
                 <a href="registros.php" class="list-group-item list-group-item-action bg-dark" id="registros-toggle" style="color: #c2c3c5">Registros</a>
-                <a href="userCadastrados.php" class="list-group-item list-group-item-action bg-dark" id="userCadastrados-toggle" style="color: #c2c3c5">Usuários Cadastrados</a>
+                <a href="cadastros.php" class="list-group-item list-group-item-action bg-dark" id="cadastros-toggle" style="color: #c2c3c5">Usuários Cadastrados</a>
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->
