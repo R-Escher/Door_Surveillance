@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <SPI.h>
@@ -42,15 +35,17 @@ char * append(char * string1, char * string2, char * separator){
 }
 
 void setup() {
-    int pos = 0;
+
     Serial.begin(115200);   //talvez 115200 para o wifi
     SPI.begin();            //INICIALIZA O BARRAMENTO SPI
     rfid.PCD_Init();        //INICIALIZA MFRC522
 
-    // We start by connecting to a WiFi network
-    servo.attach(SERVO_PIN);
-    servo.write(pos-180);
     
+    servo.attach(SERVO_PIN);
+    //servo.write(180);   // FECHA A PORTA
+    servo.write(0);
+
+    // We start by connecting to a WiFi network
     Serial.println("");
     Serial.print("Connecting to ");
     Serial.print(ssid);
@@ -78,7 +73,7 @@ void setup() {
 }
 
 void loop() {
-    // byte* tagID;
+
     // fica em loop ate cartao ser aproximado
     if (!rfid.PICC_IsNewCardPresent() || !rfid.PICC_ReadCardSerial()){
         delay(500);
@@ -126,8 +121,11 @@ void loop() {
             Serial.print("Response from Server: "); 
             if (httpCode == 200){
                 Serial.println("Access allowed! Opening door...");  
-                /// door opening treatment
-                //
+                servo.write(90);
+                delay(1500);
+                servo.write(0);
+                delay(1500);
+
             } else if (httpCode == 401){
                 Serial.println("Access denied!");  
             }
