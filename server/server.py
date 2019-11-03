@@ -85,24 +85,28 @@ class myHandler(SimpleHTTPRequestHandler):
         tagID = post_data["tagID"]
         apiKEY = post_data["apiKEY"]
 
-        # convert to json and then encode
-        values = {'tagID' : tagID}
-        data = urllib.parse.urlencode(values)
-        
-        # POST requires the data to be bytes
-        data = data.encode('ascii') 
+        # checks if the esp8266 was not cloned
+        if (apiKEY == "b79e0ad612c6b94c2f956036a149e5c0"):
+            # convert to json and then encode
+            values = {'tagID' : tagID}
+            data = urllib.parse.urlencode(values)
+            
+            # POST requires the data to be bytes
+            data = data.encode('ascii') 
 
-        # sends post-request with tagID to php server, and receives response
-        req = urllib.request.Request(url, data)
-        with urllib.request.urlopen(req) as response:
-            response = response.read().decode() # answer
+            # sends post-request with tagID to php server, and receives response
+            req = urllib.request.Request(url, data)
+            with urllib.request.urlopen(req) as response:
+                response = response.read().decode() # answer
 
-        # set http response code (200 OK; 404 not found etc)
-        http_resp = 404
-        if (response == '1'): # access authorized
-            http_resp = 200
-        if (response == '0'): # access unauthorized
-            http_resp = 401
+            # set http response code (200 OK; 404 not found etc)
+            http_resp = 404
+            if (response == '1'): # access authorized
+                http_resp = 200
+            if (response == '0'): # access unauthorized
+                http_resp = 401
+        else:
+            http_resp = 401 # access unauthorized
 
         self.send_response(http_resp)
         self.end_headers()
