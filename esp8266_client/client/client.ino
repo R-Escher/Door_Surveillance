@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <SPI.h>
@@ -12,10 +19,10 @@
 
 #define RST_PIN D1               //PINO DE RESET
 #define SS_PIN D2                //PINO SDA aka SERIAL DATA
-#define SERVO_PIN D3              //PINO PARA CONTROLAR O SERVO
+#define SERVO_PIN D3             //PINO PARA CONTROLAR O SERVO
 
 
-#include "MFRC522.h" //https://www.instructables.com/id/WiFi-RFID-Reader/
+#include "MFRC522.h"                    //https://www.instructables.com/id/WiFi-RFID-Reader/
 MFRC522 rfid(SS_PIN, RST_PIN);          //ATRIBUINDO A VARIÁVEL RFID COMO REF A BIBLIOTECA E PASSANDO PARÂMETROS
 
 Servo servo;
@@ -36,9 +43,9 @@ char * append(char * string1, char * string2, char * separator){
 
 void setup() {
     int pos = 0;
-    Serial.begin(115200); //talvez 115200 para o wifi
-    SPI.begin();        //INICIALIZA O BARRAMENTO SPI
-    rfid.PCD_Init();    //INICIALIZA MFRC522
+    Serial.begin(115200);   //talvez 115200 para o wifi
+    SPI.begin();            //INICIALIZA O BARRAMENTO SPI
+    rfid.PCD_Init();        //INICIALIZA MFRC522
 
     // We start by connecting to a WiFi network
     servo.attach(SERVO_PIN);
@@ -49,9 +56,11 @@ void setup() {
     Serial.print(ssid);
     Serial.println("");
 
-    /* Explicitly set the ESP8266 to be a WiFi-client, otherwise, it by default,
+    /*  
+        Explicitly set the ESP8266 to be a WiFi-client, otherwise, it by default,
         would try to act as both a client and an access-point and could cause
-        network-issues with your other WiFi-devices on your WiFi-network. */
+        network-issues with your other WiFi-devices on your WiFi-network. 
+    */
     WiFi.mode(WIFI_OFF);        //Prevents reconnection issue (taking too long to connect)
     delay(500);     
     WiFi.mode(WIFI_STA);

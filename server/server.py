@@ -1,3 +1,24 @@
+'''
+THIS PROGRAM RECEIVES A POST-REQUEST FROM ESP8266 BOARD 
+CONTAINING A TAGID - WHEN SOMEONE PASSES A CARD 
+ON THE RFID SENSOR - AND AN APIKEY VALIDATING THE 
+PROCEDURE (SECURITY STEP).
+
+SO IF THE APIKEY CHECKS, THE PROGRAM WILL SEND THE TAGID 
+TO THE PHP SERVER, AND IT WILL RESPOND AUTHORIZING (1) OR
+UNAUTHORIZING (0) THE ACCESS.
+
+THE PROGRAM WILL RESPOND BACK TO THE ESP8266 AN HTTP-CODE
+EQUIVALENT TO THE AUTHORIZATION (200 OR 401).
+
+AUTHOR: RAFAEL M. ESCHER
+FEDERAL UNIVERSITY OF RIO GRANDE
+FURG
+RIO GRANDE DO SUL
+BRASIL
+
+'''
+
 import socketserver
 import json
 from http.server import SimpleHTTPRequestHandler
@@ -16,7 +37,9 @@ PORT = 8091
 class myHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
+        ''' INCOMPLETE - NOT USED '''
 
+        '''
         # receive tagID from ESP8266
         print ("tagID: ")
         tagID = self.path
@@ -27,7 +50,7 @@ class myHandler(SimpleHTTPRequestHandler):
 
         print(post_data)
         
-        '''
+        
         # convert to json and then encode
         values = {'tagID' : tagID}
         data = urllib.parse.urlencode(values)
@@ -69,7 +92,7 @@ class myHandler(SimpleHTTPRequestHandler):
         # POST requires the data to be bytes
         data = data.encode('ascii') 
 
-        # sends post-request with tagID to php server, and receives response from php server
+        # sends post-request with tagID to php server, and receives response
         req = urllib.request.Request(url, data)
         with urllib.request.urlopen(req) as response:
             response = response.read().decode() # answer
